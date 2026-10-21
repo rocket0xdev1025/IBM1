@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>$IBM — Infinite Buyback Machine</title>
+  <meta name="description" content="Infinite Buyback Machine ($IBM). Buy, burn, repeat—endless meme-powered momentum in a wild crypto loop built for nonstop community hype.">
+  <meta name="theme-color" content="#071006">
+  <meta property="og:title" content="Infinite Buyback Machine ($IBM)">
+  <meta property="og:description" content="Buy, burn, repeat—endless meme-powered momentum in a wild crypto loop built for nonstop community hype.">
+  <meta property="og:image" content="banner.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Infinite Buyback Machine ($IBM)">
+  <meta name="twitter:description" content="Buy, burn, repeat—endless meme-powered momentum in a wild crypto loop built for nonstop community hype.">
+  <meta name="twitter:image" content="banner.jpg">
+  <link rel="icon" href="logo.jpg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;800&family=Rajdhani:wght@500;600;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            acid: "#E3FE71",
+            ink: "#071006",
+            mist: "#E7F6C4"
+          },
+          fontFamily: {
+            display: ["Orbitron", "sans-serif"],
+            sans: ["Rajdhani", "sans-serif"],
+            mono: ["Share Tech Mono", "monospace"]
+          },
+          boxShadow: {
+            glow: "0 0 28px rgba(227, 254, 113, 0.35)"
+          }
+        }
+      }
+    };
+  </script>
+  <style>
+    :root { color-scheme: dark; }
+
+    body { background-color: #071006; }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      z-index: -1;
+      background:
+        radial-gradient(ellipse 75% 60% at 50% 46%, rgba(7, 16, 6, 0.08), rgba(7, 16, 6, 0.72) 72%),
+        linear-gradient(180deg, rgba(7, 16, 6, 0.62) 0%, rgba(7, 16, 6, 0.22) 24%, rgba(7, 16, 6, 0.16) 48%, rgba(7, 16, 6, 0.7) 100%),
+        url("banner.jpg") center center / cover no-repeat;
+    }
+
+    ::selection { background: #E3FE71; color: #071006; }
+
+    ::-webkit-scrollbar { width: 10px; height: 10px; }
+    ::-webkit-scrollbar-track { background: #071006; }
+    ::-webkit-scrollbar-thumb { background: #E3FE71; }
+
+    :focus-visible {
+      outline: 2px solid #E3FE71;
+      outline-offset: 3px;
+    }
+
+    [id] { scroll-margin-top: 8.75rem; }
+
+    .nameplate {
+      text-shadow:
+        0 3px 0 #000,
+        0 8px 18px rgba(0, 0, 0, 0.9),
+        0 0 28px rgba(227, 254, 113, 0.28);
+    }
+
+    .plate {
+      position: relative;
+      background:
+        linear-gradient(#E3FE71, #E3FE71) left 8px top 8px / 16px 2px no-repeat,
+        linear-gradient(#E3FE71, #E3FE71) left 8px top 8px / 2px 16px no-repeat,
+        linear-gradient(#E3FE71, #E3FE71) right 8px top 8px / 16px 2px no-repeat,
+        linear-gradient(#E3FE71, #E3FE71) right 8px top 8px / 2px 16px no-repeat,
+        linear-gradient(#E3FE71, #E3FE71) left 8px bottom 8px / 16px 2px no-repeat,
+        linear-gradient(#E3FE71, #E3FE71) left 8px bottom 8px / 2px 16px no-repeat,
+        linear-gradient(#E3FE71, #E3FE71) right 8px bottom 8px / 16px 2px no-repeat,
+        linear-gradient(#E3FE71, #E3FE71) right 8px bottom 8px / 2px 16px no-repeat,
+        rgba(7, 16, 6, 0.9);
+      border: 1px solid rgba(227, 254, 113, 0.42);
+      box-shadow: 0 18px 50px rgba(0, 0, 0, 0.38), inset 0 0 0 1px rgba(0, 0, 0, 0.45);
+    }
+
+    .hazard {
+      height: 0.6rem;
+      background: repeating-linear-gradient(-45deg, #E3FE71 0 10px, #071006 10px 20px);
+    }
+
+    .gear {
+      border-radius: 9999px;
+      background: repeating-conic-gradient(from 0deg, #E3FE71 0deg 8deg, transparent 8deg 20deg);
+      -webkit-mask: radial-gradient(circle, transparent 61%, #000 62%);
+      mask: radial-gradient(circle, transparent 61%, #000 62%);
+      animation: spin 22s linear infinite;
+    }
+
+    .spin-rev { animation: spin 36s linear infinite reverse; }
+
+    .marquee-track { animation: marquee 32s linear infinite; }
+    .ticker:hover .marquee-track { animation-play-state: paused; }
+
+    .belt {
+      width: 2.75rem;
+      height: 4px;
+      background: repeating-linear-gradient(90deg, #E3FE71 0 8px, transparent 8px 13px);
+      animation: drive 0.5s linear infinite;
+    }
+
+    .belt-v {
+      width: 4px;
+      height: 1.4rem;
+      background: repeating-linear-gradient(#E3FE71 0 8px, transparent 8px 13px);
+      animation: drive-v 0.5s linear infinite;
+    }
+
+    .is-copied {
+      background: #071006 !important;
+      color: #E3FE71 !important;
+      box-shadow: inset 0 0 0 2px #E3FE71;
+    }
+
+    @keyframes spin { to { transform: rotate(360deg); } }
+    @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+    @keyframes drive { to { background-position: 13px 0; } }
+    @keyframes drive-v { to { background-position: 0 13px; } }
+
+    @media (prefers-reduced-motion: reduce) {
+      .gear, .marquee-track, .belt, .belt-v, .spin-rev, .animate-ping { animation: none !important; }
+    }
+  </style>
+</head>
+<body class="overflow-x-hidden bg-ink pt-[8.4rem] font-sans text-base font-medium text-mist antialiased md:pt-[6.35rem]">
+  <a href="#main" class="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-[70] focus:bg-acid focus:px-4 focus:py-2 focus:font-display focus:text-sm focus:text-ink">Skip to content</a>
+
+  <div class="fixed inset-x-0 top-0 z-50 overflow-x-hidden shadow-[0_10px_30px_rgba(0,0,0,0.45)]">
+    <div class="ticker overflow-hidden border-b border-acid/40 bg-black/90" aria-hidden="true">
+      <div class="marquee-track flex w-max">
+        <p class="flex shrink-0 items-center py-2 font-mono text-[11px] tracking-[0.32em] text-acid sm:text-xs">
+          <span class="px-4">BUY</span><span>∞</span>
+          <span class="px-4">BURN</span><span>∞</span>
+          <span class="px-4">REPEAT</span><span>∞</span>
+          <span class="px-4">$IBM</span><span>∞</span>
+          <span class="px-4">ROBINHOOD ETH</span><span>∞</span>
+          <span class="px-4">INFINITE LOOP</span><span>∞</span>
+          <span class="px-4">COMMUNITY HYPE</span><span>∞</span>
+          <span class="px-4">BUYBACK MACHINE</span><span>∞</span>
+        </p>
+        <p class="flex shrink-0 items-center py-2 font-mono text-[11px] tracking-[0.32em] text-acid sm:text-xs">
+          <span class="px-4">BUY</span><span>∞</span>
+          <span class="px-4">BURN</span><span>∞</span>
+          <span class="px-4">REPEAT</span><span>∞</span>
+          <span class="px-4">$IBM</span><span>∞</span>
+          <span class="px-4">ROBINHOOD ETH</span><span>∞</span>
+          <span class="px-4">INFINITE LOOP</span><span>∞</span>
+          <span class="px-4">COMMUNITY HYPE</span><span>∞</span>
+          <span class="px-4">BUYBACK MACHINE</span><span>∞</span>
+        </p>
+      </div>
+    </div>
+
+    <header class="border-b border-acid/30 bg-ink/90 backdrop-blur-md">
+      <div class="mx-auto flex max-w-6xl items-center justify-between gap-3 px-4 py-3">
+        <a href="#top" class="flex items-center gap-3">
+          <img src="logo.jpg" alt="" width="512" height="482" class="h-10 w-10 border border-acid object-cover">
+          <span class="font-display text-sm font-bold leading-none tracking-wide text-acid">IBM<span class="mt-1 block font-mono text-[10px] font-normal tracking-[0.28em] text-mist">BUYBACK</span></span>
+        </a>
+        <nav class="hidden items-center gap-7 font-display text-[11px] font-bold tracking-[0.22em] text-mist md:flex" aria-label="Primary">
+          <a href="#loop" class="transition hover:text-acid">THE LOOP</a>
+          <a href="#how-to-buy" class="transition hover:text-acid">HOW TO BUY</a>
+          <a href="#chart" class="transition hover:text-acid">CHART</a>
+        </nav>
+        <div class="flex items-center gap-2">
+          <a href="https://x.com/InfiniteBM_x" target="_blank" rel="noopener noreferrer" aria-label="Infinite Buyback Machine on X" class="inline-flex h-10 w-10 items-center justify-center border border-acid/50 bg-black transition hover:border-acid hover:shadow-glow">
+            <img src="x.png" alt="" width="64" height="64" class="h-6 w-6 object-contain">
+          </a>
+          <a href="https://app.uniswap.org/swap?chain=robinhood&outputCurrency=0x32a70b126e1c4ca1401b1cd3a54d29190a3db718" target="_blank" rel="noopener noreferrer" class="inline-flex h-10 items-center bg-acid px-3 font-display text-[11px] font-bold tracking-[0.16em] text-ink transition hover:brightness-110 sm:px-4">BUY NOW</a>
+        </div>
+      </div>
+      <nav class="flex items-center justify-center gap-6 border-t border-acid/20 py-2 font-display text-[11px] font-bold tracking-[0.18em] text-mist md:hidden" aria-label="Mobile">
+        <a href="#loop" class="hover:text-acid">THE LOOP</a>
+        <a href="#how-to-buy" class="hover:text-acid">HOW TO BUY</a>
+        <a href="#chart" class="hover:text-acid">CHART</a>
+      </nav>
+    </header>
+  </div>
+
+  <main id="main">
+    <section id="top" class="flex min-h-[calc(100svh-8.4rem)] flex-col md:min-h-[calc(100svh-6.35rem)]">
+      <div class="bg-gradient-to-b from-ink/80 via-ink/45 to-transparent px-4 pb-6 pt-8 text-center sm:pt-12">
+        <div class="relative mx-auto h-28 w-28 sm:h-36 sm:w-36">
+          <div class="gear absolute -inset-4 sm:-inset-6" aria-hidden="true"></div>
+          <div class="spin-rev pointer-events-none absolute -inset-1 rounded-full border border-dashed border-acid/70" aria-hidden="true"></div>
+          <img src="logo.jpg" alt="Infinite Buyback Machine logo" width="512" height="482" class="relative z-10 h-full w-full border-2 border-acid object-cover shadow-glow">
+        </div>
+        <h1 class="nameplate mx-auto mt-6 max-w-5xl font-display text-[clamp(2.7rem,8.6vw,6.6rem)] font-extrabold uppercase leading-[0.88] tracking-tight text-acid">
+          Infinite<br>Buyback<br>Machine
+        </h1>
+        <p class="mt-5 inline-block bg-acid px-4 py-1.5 font-display text-sm font-bold tracking-[0.42em] text-ink shadow-[0_8px_24px_rgba(0,0,0,0.45)]">$IBM</p>
+      </div>
+
+      <div class="min-h-[10vh] flex-1" aria-hidden="true"></div>
+
+      <div class="mx-auto w-full max-w-3xl px-4 pb-10">
+        <div class="plate">
+          <div class="hazard" aria-hidden="true"></div>
+          <div class="flex flex-wrap items-center justify-center gap-x-4 gap-y-2 border-b border-acid/25 px-4 py-3 font-mono text-[11px] tracking-[0.28em] text-acid">
+            <span class="inline-flex items-center gap-2">
+              <span class="relative flex h-2.5 w-2.5" aria-hidden="true">
+                <span class="absolute inline-flex h-full w-full animate-ping rounded-full bg-acid opacity-70"></span>
+                <span class="relative inline-flex h-2.5 w-2.5 rounded-full bg-acid"></span>
+              </span>
+              MACHINE ONLINE
+            </span>
+            <span class="text-mist/50" aria-hidden="true">//</span>
+            <span>ROBINHOOD CHAIN</span>
+            <span class="text-mist/50" aria-hidden="true">//</span>
+            <span>UNIT ∞</span>
+          </div>
+          <p class="bg-acid px-4 py-4 text-center font-sans text-lg font-bold leading-snug text-ink sm:px-6 sm:text-xl md:text-2xl">
+            Buy, burn, repeat—endless meme-powered momentum in a wild crypto loop built for nonstop community hype!
+          </p>
+          <div class="space-y-4 p-4 sm:p-5">
+            <div class="flex flex-col border border-acid/40 bg-black/55 sm:flex-row">
+              <div class="min-w-0 flex-1 px-4 py-3">
+                <p class="font-mono text-[10px] tracking-[0.28em] text-acid/75">CONTRACT ADDRESS · CA</p>
+                <p class="mt-1 break-all font-mono text-lg text-acid select-all" data-ca>0x32a70b126e1c4ca1401b1cd3a54d29190a3db718</p>
+              </div>
+              <button type="button" data-copy aria-label="Copy contract address" class="min-h-[3rem] bg-acid px-5 font-display text-xs font-bold tracking-[0.2em] text-ink transition hover:brightness-110 sm:min-w-[8rem]">
+                <span data-copy-label aria-live="polite">COPY</span>
+              </button>
+            </div>
+            <div class="grid grid-cols-1 gap-3 sm:grid-cols-2">
+              <a href="https://app.uniswap.org/swap?chain=robinhood&outputCurrency=0x32a70b126e1c4ca1401b1cd3a54d29190a3db718" target="_blank" rel="noopener noreferrer" class="inline-flex min-h-[3.25rem] items-center justify-center gap-2 bg-acid px-6 font-display text-sm font-bold tracking-[0.22em] text-ink shadow-glow transition hover:brightness-110 active:translate-y-px">
+                <svg viewBox="0 0 24 24" class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 12h12M12 6l6 6-6 6"/></svg>
+                BUY NOW
+              </a>
+              <a href="https://dexscreener.com/robinhood/0x32a70b126e1c4ca1401b1cd3a54d29190a3db718" target="_blank" rel="noopener noreferrer" class="inline-flex min-h-[3.25rem] items-center justify-center gap-2 border border-acid px-6 font-display text-sm font-bold tracking-[0.22em] text-acid transition hover:bg-acid hover:text-ink active:translate-y-px">
+                <svg viewBox="0 0 24 24" class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 19V5M4 19h16"/><path d="M7 15l4-5 3 3 5-7"/></svg>
+                CHART
+              </a>
+            </div>
+            <dl class="grid grid-cols-2 gap-px border border-acid/30 bg-acid/30 md:grid-cols-4">
+              <div class="bg-ink px-3 py-3">
+                <dt class="font-mono text-[10px] tracking-[0.22em] text-acid/70">FUEL</dt>
+                <dd class="mt-1 font-display text-xs font-bold text-acid sm:text-sm">ROBINHOOD ETH</dd>
+              </div>
+              <div class="bg-ink px-3 py-3">
+                <dt class="font-mono text-[10px] tracking-[0.22em] text-acid/70">OUTPUT</dt>
+                <dd class="mt-1 font-display text-xs font-bold text-acid sm:text-sm">$IBM</dd>
+              </div>
+              <div class="bg-ink px-3 py-3">
+                <dt class="font-mono text-[10px] tracking-[0.22em] text-acid/70">CYCLE</dt>
+                <dd class="mt-1 font-display text-xs font-bold text-acid sm:text-sm">NONSTOP</dd>
+              </div>
+              <div class="bg-ink px-3 py-3">
+                <dt class="font-mono text-[10px] tracking-[0.22em] text-acid/70">STATE</dt>
+                <dd class="mt-1 font-display text-xs font-bold text-acid sm:text-sm">ARMED</dd>
+              </div>
+            </dl>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="hazard" aria-hidden="true"></div>
+
+    <section id="loop" class="mx-auto max-w-6xl px-4 py-16 sm:py-20">
+      <header class="plate mb-8 max-w-3xl p-6 sm:p-7">
+        <p class="font-mono text-[11px] tracking-[0.32em] text-acid">01 // MACHINE CORE</p>
+        <h2 class="mt-2 font-display text-4xl font-extrabold uppercase leading-none text-acid sm:text-5xl">Buy. Burn. Repeat.</h2>
+        <p class="mt-4 text-lg leading-relaxed text-mist sm:text-xl">Endless meme-powered momentum in a wild crypto loop built for nonstop community hype. Three chambers. One flywheel. The machine does not clock out.</p>
+      </header>
+
+      <div class="relative mx-auto mb-10 flex h-40 w-40 items-center justify-center" aria-hidden="true">
+        <div class="gear absolute inset-0"></div>
+        <span class="relative z-10 font-display text-6xl text-acid drop-shadow-[0_0_16px_rgba(227,254,113,0.75)]">∞</span>
+      </div>
+
+      <div class="flex flex-col lg:flex-row lg:items-stretch">
+        <article class="plate flex-1 p-6">
+          <p class="font-mono text-[11px] tracking-[0.28em] text-acid/80">01 · INTAKE</p>
+          <h3 class="mt-3 font-display text-3xl font-bold uppercase text-acid">Buy</h3>
+          <p class="mt-3 text-lg leading-relaxed">Robinhood ETH feeds the intake. Swapping it for $IBM is how the community grabs the wheel and starts another turn of the loop.</p>
+          <p class="mt-6 font-mono text-[11px] tracking-[0.22em] text-acid/70">VALVE OPEN</p>
+        </article>
+        <div class="flex items-center justify-center py-1 lg:px-3 lg:py-0" aria-hidden="true">
+          <div class="belt-v lg:hidden"></div>
+          <div class="belt hidden lg:block"></div>
+        </div>
+        <article class="plate flex-1 p-6">
+          <p class="font-mono text-[11px] tracking-[0.28em] text-acid/80">02 · FURNACE</p>
+          <h3 class="mt-3 font-display text-3xl font-bold uppercase text-acid">Burn</h3>
+          <p class="mt-3 text-lg leading-relaxed">Buybacks are the burn chamber. Supply goes into the fire, the float gets thinner, and every ignition pulls the loop tighter.</p>
+          <p class="mt-6 font-mono text-[11px] tracking-[0.22em] text-acid/70">FURNACE LIT</p>
+        </article>
+        <div class="flex items-center justify-center py-1 lg:px-3 lg:py-0" aria-hidden="true">
+          <div class="belt-v lg:hidden"></div>
+          <div class="belt hidden lg:block"></div>
+        </div>
+        <article class="plate flex-1 p-6">
+          <p class="font-mono text-[11px] tracking-[0.28em] text-acid/80">03 · FLYWHEEL</p>
+          <h3 class="mt-3 font-display text-3xl font-bold uppercase text-acid">Repeat</h3>
+          <p class="mt-3 text-lg leading-relaxed">Nothing in this cycle clocks out. Hype spins the flywheel, the flywheel pulls the next buy, and the meme keeps its momentum.</p>
+          <p class="mt-6 font-mono text-[11px] tracking-[0.22em] text-acid/70">WHEEL SPINNING</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="how-to-buy" class="mx-auto max-w-6xl px-4 pb-16 sm:pb-20">
+      <header class="plate mb-8 p-6 sm:p-7">
+        <p class="font-mono text-[11px] tracking-[0.32em] text-acid">02 // OPERATOR MANUAL</p>
+        <h2 class="mt-2 font-display text-4xl font-extrabold uppercase leading-none text-acid sm:text-5xl">How to Buy</h2>
+        <p class="mt-4 max-w-3xl text-lg leading-relaxed sm:text-xl">Four stations. The fuel is Robinhood ETH. The output is $IBM. Run them in order and you are inside the loop.</p>
+      </header>
+
+      <ul class="mb-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+        <li class="flex items-center gap-3 border border-acid/35 bg-ink/80 px-3 py-3 font-mono text-sm text-mist">
+          <span class="h-2.5 w-2.5 shrink-0 bg-acid shadow-glow" aria-hidden="true"></span>
+          Wallet ready
+        </li>
+        <li class="flex items-center gap-3 border border-acid/35 bg-ink/80 px-3 py-3 font-mono text-sm text-mist">
+          <span class="h-2.5 w-2.5 shrink-0 bg-acid shadow-glow" aria-hidden="true"></span>
+          Robinhood ETH
+        </li>
+        <li class="flex items-center gap-3 border border-acid/35 bg-ink/80 px-3 py-3 font-mono text-sm text-mist">
+          <span class="h-2.5 w-2.5 shrink-0 bg-acid shadow-glow" aria-hidden="true"></span>
+          ETH left for gas
+        </li>
+        <li class="flex items-center gap-3 border border-acid/35 bg-ink/80 px-3 py-3 font-mono text-sm text-mist">
+          <span class="h-2.5 w-2.5 shrink-0 bg-acid shadow-glow" aria-hidden="true"></span>
+          $IBM contract
+        </li>
+      </ul>
+
+      <div class="plate mb-6 flex flex-col sm:flex-row">
+        <div class="min-w-0 flex-1 px-5 py-4">
+          <p class="font-mono text-[10px] tracking-[0.28em] text-acid/75">COPY THE CA · PASTE IT IN STATION 03 IF $IBM IS NOT LISTED</p>
+          <p class="mt-1 break-all font-mono text-xl text-acid select-all" data-ca>0x32a70b126e1c4ca1401b1cd3a54d29190a3db718</p>
+        </div>
+        <button type="button" data-copy aria-label="Copy contract address" class="min-h-[3rem] bg-acid px-6 font-display text-xs font-bold tracking-[0.2em] text-ink transition hover:brightness-110 sm:min-w-[8rem]">
+          <span data-copy-label aria-live="polite">COPY</span>
+        </button>
+      </div>
+
+      <ol class="space-y-3">
+        <li>
+          <article class="plate flex overflow-hidden">
+            <div class="flex w-16 shrink-0 items-center justify-center bg-acid font-display text-2xl font-extrabold text-ink sm:w-24 sm:text-4xl" aria-hidden="true">01</div>
+            <div class="p-5 sm:p-6">
+              <p class="font-mono text-[11px] tracking-[0.28em] text-acid/80">STATION 01 · FUEL</p>
+              <h3 class="mt-1 font-display text-2xl font-bold uppercase text-acid sm:text-3xl">Hold Robinhood ETH</h3>
+              <p class="mt-2 max-w-3xl text-lg leading-relaxed">Load a wallet such as MetaMask or Rabby with ETH on Robinhood Chain. That ETH is the fuel you swap and the gas the transaction burns. Keep it on Robinhood Chain — ETH on another network will not turn this machine.</p>
+            </div>
+          </article>
+        </li>
+        <li class="flex justify-center" aria-hidden="true"><div class="belt-v"></div></li>
+        <li>
+          <article class="plate flex overflow-hidden">
+            <div class="flex w-16 shrink-0 items-center justify-center bg-acid font-display text-2xl font-extrabold text-ink sm:w-24 sm:text-4xl" aria-hidden="true">02</div>
+            <div class="p-5 sm:p-6">
+              <p class="font-mono text-[11px] tracking-[0.28em] text-acid/80">STATION 02 · LINK</p>
+              <h3 class="mt-1 font-display text-2xl font-bold uppercase text-acid sm:text-3xl">Open the Swap</h3>
+              <p class="mt-2 max-w-3xl text-lg leading-relaxed">Press Buy Now. Uniswap opens on Robinhood Chain with $IBM already set as the token you receive. Connect the wallet that holds your Robinhood ETH and approve the network switch when it asks.</p>
+            </div>
+          </article>
+        </li>
+        <li class="flex justify-center" aria-hidden="true"><div class="belt-v"></div></li>
+        <li>
+          <article class="plate flex overflow-hidden">
+            <div class="flex w-16 shrink-0 items-center justify-center bg-acid font-display text-2xl font-extrabold text-ink sm:w-24 sm:text-4xl" aria-hidden="true">03</div>
+            <div class="p-5 sm:p-6">
+              <p class="font-mono text-[11px] tracking-[0.28em] text-acid/80">STATION 03 · LOAD</p>
+              <h3 class="mt-1 font-display text-2xl font-bold uppercase text-acid sm:text-3xl">Swap ETH for $IBM</h3>
+              <p class="mt-2 max-w-3xl text-lg leading-relaxed">Pay with ETH. If $IBM does not show in the token list, copy the contract address above and paste it into Uniswap. Enter how much Robinhood ETH to spend, and leave a little ETH in the wallet so the network fee can clear.</p>
+            </div>
+          </article>
+        </li>
+        <li class="flex justify-center" aria-hidden="true"><div class="belt-v"></div></li>
+        <li>
+          <article class="plate flex overflow-hidden">
+            <div class="flex w-16 shrink-0 items-center justify-center bg-acid font-display text-2xl font-extrabold text-ink sm:w-24 sm:text-4xl" aria-hidden="true">04</div>
+            <div class="p-5 sm:p-6">
+              <p class="font-mono text-[11px] tracking-[0.28em] text-acid/80">STATION 04 · FIRE</p>
+              <h3 class="mt-1 font-display text-2xl font-bold uppercase text-acid sm:text-3xl">Confirm the Loop</h3>
+              <p class="mt-2 max-w-3xl text-lg leading-relaxed">Check the quote and slippage, then confirm the swap in your wallet. When the chain finishes, $IBM is yours. Buy, burn, repeat — you are in the wild crypto loop, and the flywheel keeps turning on community hype.</p>
+            </div>
+          </article>
+        </li>
+      </ol>
+
+      <div class="mt-6 flex flex-col items-start justify-between gap-4 bg-acid px-5 py-5 text-ink sm:flex-row sm:items-center sm:px-6">
+        <p class="font-display text-lg font-bold uppercase leading-tight sm:text-xl">Fuel loaded? Engage the swap.</p>
+        <a href="https://app.uniswap.org/swap?chain=robinhood&outputCurrency=0x32a70b126e1c4ca1401b1cd3a54d29190a3db718" target="_blank" rel="noopener noreferrer" class="inline-flex min-h-[3rem] items-center justify-center bg-ink px-6 font-display text-sm font-bold tracking-[0.2em] text-acid transition hover:bg-black">BUY NOW</a>
+      </div>
+    </section>
+
+    <section id="chart" class="mx-auto max-w-6xl px-4 pb-20">
+      <header class="mb-6 flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
+        <div class="plate px-6 py-5">
+          <p class="font-mono text-[11px] tracking-[0.32em] text-acid">03 // LIVE FEED</p>
+          <h2 class="mt-2 font-display text-4xl font-extrabold uppercase leading-none text-acid sm:text-5xl">Chart</h2>
+        </div>
+        <a href="https://dexscreener.com/robinhood/0x32a70b126e1c4ca1401b1cd3a54d29190a3db718" target="_blank" rel="noopener noreferrer" class="inline-flex min-h-[3rem] items-center justify-center border border-acid bg-ink/80 px-6 font-display text-sm font-bold tracking-[0.2em] text-acid transition hover:bg-acid hover:text-ink">CHART</a>
+      </header>
+      <div class="plate overflow-hidden">
+        <div class="flex items-center justify-between gap-3 border-b border-acid/30 px-4 py-3">
+          <p class="flex items-center gap-2 font-mono text-[11px] tracking-[0.18em] text-acid sm:tracking-[0.24em]">
+            <span class="relative flex h-2.5 w-2.5 shrink-0" aria-hidden="true">
+              <span class="absolute inline-flex h-full w-full animate-ping rounded-full bg-acid opacity-70"></span>
+              <span class="relative inline-flex h-2.5 w-2.5 rounded-full bg-acid"></span>
+            </span>
+            DEXSCREENER // ROBINHOOD // $IBM
+          </p>
+          <a href="https://dexscreener.com/robinhood/0x32a70b126e1c4ca1401b1cd3a54d29190a3db718" target="_blank" rel="noopener noreferrer" class="shrink-0 font-mono text-[11px] tracking-[0.16em] text-mist hover:text-acid">OPEN</a>
+        </div>
+        <iframe
+          title="Dexscreener chart for IBM on Robinhood Chain"
+          src="https://dexscreener.com/robinhood/0x32a70b126e1c4ca1401b1cd3a54d29190a3db718?embed=1&theme=dark&trades=0&info=0&chartTheme=dark"
+          class="h-[440px] w-full bg-black md:h-[620px]"
+          loading="lazy"
+        ></iframe>
+      </div>
+      <p class="mt-3 text-center font-mono text-xs tracking-[0.18em] text-mist/80">PAIR FEED · ROBINHOOD CHAIN · $IBM</p>
+    </section>
+  </main>
+
+  <footer class="border-t border-acid/25 bg-ink">
+    <div class="hazard" aria-hidden="true"></div>
+    <div class="mx-auto flex max-w-6xl flex-col items-center px-4 py-12 text-center">
+      <img src="logo.jpg" alt="" width="512" height="482" class="h-16 w-16 border-2 border-acid object-cover shadow-glow">
+      <p class="mt-4 font-display text-xl font-bold uppercase tracking-wide text-acid">Infinite Buyback Machine</p>
+      <p class="mt-1 font-mono text-sm tracking-[0.35em] text-mist">$IBM</p>
+      <div class="mt-6 flex flex-wrap items-center justify-center gap-3">
+        <a href="https://x.com/InfiniteBM_x" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-3 border border-acid/40 bg-black px-3 py-2 transition hover:border-acid hover:shadow-glow">
+          <img src="x.png" alt="" width="64" height="64" class="h-7 w-7 object-contain">
+          <span class="font-mono text-xs tracking-[0.18em] text-acid">@InfiniteBM_x</span>
+        </a>
+        <a href="https://app.uniswap.org/swap?chain=robinhood&outputCurrency=0x32a70b126e1c4ca1401b1cd3a54d29190a3db718" target="_blank" rel="noopener noreferrer" class="inline-flex min-h-[3rem] items-center bg-acid px-5 font-display text-xs font-bold tracking-[0.18em] text-ink">BUY NOW</a>
+        <a href="https://dexscreener.com/robinhood/0x32a70b126e1c4ca1401b1cd3a54d29190a3db718" target="_blank" rel="noopener noreferrer" class="inline-flex min-h-[3rem] items-center border border-acid px-5 font-display text-xs font-bold tracking-[0.18em] text-acid hover:bg-acid hover:text-ink">CHART</a>
+      </div>
+      <p class="mt-8 max-w-xl text-sm leading-relaxed text-mist/75">$IBM is a meme on Robinhood Chain. This page is the machine manual for a community loop, not financial advice. Tokens can go to zero. Do your own research before you buy.</p>
+      <p class="mt-6 font-mono text-[11px] tracking-[0.28em] text-acid/60">SN-∞-IBM-001 · BUY · BURN · REPEAT</p>
+    </div>
+  </footer>
+
+  <script>
+    (function () {
+      var CA = "0x32a70b126e1c4ca1401b1cd3a54d29190a3db718";
+      document.querySelectorAll("[data-ca]").forEach(function (node) {
+        node.textContent = CA;
+      });
+
+      function flash(button) {
+        var label = button.querySelector("[data-copy-label]");
+        label.textContent = "COPIED";
+        button.classList.add("is-copied");
+        if (button._timer) window.clearTimeout(button._timer);
+        button._timer = window.setTimeout(function () {
+          label.textContent = "COPY";
+          button.classList.remove("is-copied");
+        }, 1600);
+      }
+
+      function fallbackCopy() {
+        var area = document.createElement("textarea");
+        area.value = CA;
+        area.setAttribute("readonly", "");
+        area.style.position = "fixed";
+        area.style.left = "-9999px";
+        document.body.appendChild(area);
+        area.select();
+        var ok = false;
+        try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
+        document.body.removeChild(area);
+        return ok;
+      }
+
+      document.querySelectorAll("[data-copy]").forEach(function (button) {
+        button.addEventListener("click", function () {
+          if (navigator.clipboard && navigator.clipboard.writeText) {
+            navigator.clipboard.writeText(CA).then(function () {
+              flash(button);
+            }).catch(function () {
+              if (fallbackCopy()) flash(button);
+            });
+          } else if (fallbackCopy()) {
+            flash(button);
+          }
+        });
+      });
+    })();
+  </script>
+</body>
+</html>
